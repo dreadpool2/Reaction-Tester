@@ -1,0 +1,123 @@
+<html>
+
+    <head>
+    
+        <style type="text/css">
+        
+            #shape{
+                
+                width: 200px;
+                height: 200px;
+                background-color: aqua;
+                top: 200px;
+                margin-top: 200px;
+                
+            }
+            #para{
+                
+                font-family: fantasy;
+            }
+            #para2{
+                
+                font-family: fantasy;
+            }
+            #hey{
+                
+                font-family: fantasy;
+                font-size: 32px;
+                
+                
+                    
+            }
+            #timeTaken{
+                
+                color: brown;
+            }
+            #least_timeTaken{
+                
+                color: brown;
+            }
+            
+        </style>
+    </head>
+    <body>
+        
+        
+        <h2 id="hey">Reaction Tester !</h2>
+        <p id ="para">
+            
+            Time Taken : <u><span id = "timeTaken"></span></u>    
+        </p>
+        
+        <p id ="para2">
+        
+            Least Time Taken : <u><span id = "least_timeTaken"></span></u>
+        
+        </p>
+        <div id = "shape">
+        </div>
+        
+        <script type =text/javascript>
+            var start = new Date().getTime(); //time in milliseconds         
+             
+            function shape_appear(){
+                document.getElementById("shape").style.display="block";
+                
+                color_rand = Math.random()*200;
+                if(color_rand>0 && color_rand<50){
+                    document.getElementById("shape").style.backgroundColor="red"
+                   }
+                if(color_rand>=50 && color_rand<100){
+                    document.getElementById("shape").style.backgroundColor="yellow"
+                   }
+                if(color_rand>=100 && color_rand<=200){
+                    document.getElementById("shape").style.backgroundColor="green"
+                   }
+                
+                position_rand1 = Math.random()*300;
+                position_rand2 = Math.random()*300;
+                
+                document.getElementById("shape").style.marginLeft=position_rand1;
+                document.getElementById("shape").style.marginTop=position_rand2+"px";
+                
+                shape_width_rand=Math.random()*200;
+                shape_height_rand=Math.random()*200;
+                
+                document.getElementById("shape").style.width=shape_width_rand;
+                document.getElementById("shape").style.height=shape_height_rand;
+                
+            }
+            var i = 0;
+            var timeTken = 0;
+            var least_timeTaken = 0;
+            document.getElementById("least_timeTaken").innerHTML = timeTken + "s"
+            document.getElementById("shape").onclick = function() {
+                i=i+1;    
+                document.getElementById("shape").style.display="none";
+                var end = new Date().getTime();
+                timeTken = (end - start) / 1000 ;
+                
+                if (i == 1){
+                    
+                document.getElementById("least_timeTaken").innerHTML = timeTken + "s"
+                least_timeTaken = timeTken;   
+                }
+                
+                if (timeTken<least_timeTaken){
+                    document.getElementById("least_timeTaken").innerHTML = timeTken + "s"
+                    least_timeTaken = timeTken;
+                }
+                
+                document.getElementById("timeTaken").innerHTML = timeTken + "s" 
+                start = new Date().getTime();
+                
+                
+                
+                setTimeout(shape_appear, Math.random() * 2000);
+            }
+            
+        </script>
+    
+    
+    </body>
+</html>
